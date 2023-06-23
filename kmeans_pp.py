@@ -103,7 +103,7 @@ def pick_centroids(data):
 
 def print_centroids(centroids):
     size_vector = len(centroids[0])
-    to_print = [['{:.4f}'.format(centroids[i][j]) for j in range(size_vector)] for i in range(k)]
+    to_print = [['{:0.4f}'.format(centroids[i][j]) for j in range(size_vector)] for i in range(k)]
     to_print = [",".join(to_print[i]) for i in range(k)]
     for i in range(k):
         print(to_print[i])
@@ -124,7 +124,7 @@ def main():
     numpy_to_float(centroids)
     data_matrix = data_matrix.tolist()
     centroids = mykmeanssp.fit(k, iterr,len(centroids[0]),len(data_matrix), eps,centroids,data_matrix)
-    print_centroids(centroids) if centroids != None else None
+    print_centroids(centroids) if centroids != 0 else None
 
 
 main()
