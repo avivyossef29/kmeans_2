@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.datasets import load_iris
 
-def calculate_distance(x1, x2):
+def calc_dist(x1, x2):
     # Function to calculate the Euclidean distance between two points
     dis = 0
     for j in range(len(x1)):
@@ -23,7 +23,7 @@ def plot_elbow_method(x_vals, y_vals):
 
     plt.xticks(range(1, len(x_vals) + 1))  # Set the x-axis ticks
     plt.savefig("elbow.png", transparent=True)  # Save the plot as a PNG file
-    plt.show()  # Display the plot
+    #plt.show()  # Display the plot
 
 if __name__ == '__main__':
     data = load_iris()  # Load the Iris dataset
@@ -38,12 +38,12 @@ if __name__ == '__main__':
         total = 0  # Initialize the total distance
         for i in range(df.shape[0]):
             # Iterate over each data point
-            total += calculate_distance(list(df.iloc[i]), list(centers[kmeans.labels_[i]]))  # Calculate the distance and add it to the total
+            total += calc_dist(list(df.iloc[i]), list(centers[kmeans.labels_[i]]))  # Calculate the distance and add it to the total
         dist[k] = total  # Store the total distance for the current 'K' value
 
     dist.remove(None)  # Remove the 'None' values from the distances list
 
-    x_vals = list(range(1, 11))  # Create a list of 'K' values
-    y_vals = dist[:10]  # Get the corresponding distances for the 'K' values
+    x_values = list(range(1, 11))  # Create a list of 'K' values
+    y_values = dist[:10]  # Get the corresponding distances for the 'K' values
 
-    plot_elbow_method(x_vals, y_vals)  # Call the function to plot the elbow method
+    plot_elbow_method(x_values, y_values)  # Call the function to plot the elbow method
